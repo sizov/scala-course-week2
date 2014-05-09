@@ -79,7 +79,7 @@ class FunSetSuite extends FunSuite {
     val s3 = singletonSet(3)
 
     val from1to10 = fromToSet(1, 10)
-    val from3to6 = fromToSet(7, 15)
+    val from3to6 = fromToSet(3, 6)
     val from7to15 = fromToSet(7, 15)
     val from13to20 = fromToSet(13, 20)
   }
@@ -121,7 +121,7 @@ class FunSetSuite extends FunSuite {
       assert(!contains(union1, 0), "Union 5")
       assert(!contains(union1, 0), "Union 6")
 
-      val union2 = union(s2, s2)
+      val union2 = union(s2, s3)
 
       assert(!contains(union2, 1), "Union 7")
       assert(contains(union2, 2), "Union 8")
