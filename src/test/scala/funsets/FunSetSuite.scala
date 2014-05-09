@@ -82,6 +82,9 @@ class FunSetSuite extends FunSuite {
     val from3to6 = fromToSet(3, 6)
     val from7to15 = fromToSet(7, 15)
     val from13to20 = fromToSet(13, 20)
+
+    val paired = fromToSet(13, 20);
+    val allPositivePlusNegative5 = allPositivePlusNegative5Set()
   }
 
   /**
@@ -173,4 +176,44 @@ class FunSetSuite extends FunSuite {
 
     }
   }
+
+  test("filter test") {
+    new TestSets {
+      val filteredFrom1To10Except5 = filter(from1to10, (x: Int) => x != 5)
+
+      assert(contains(filteredFrom1To10Except5, 1), "filter 1")
+      assert(contains(filteredFrom1To10Except5, 2), "filter 2")
+      assert(contains(filteredFrom1To10Except5, 3), "filter 3")
+      assert(contains(filteredFrom1To10Except5, 10), "filter 4")
+      assert(!contains(filteredFrom1To10Except5, 5), "filter 5")
+
+      val filteredFrom3To6Except0 = filter(from3to6, (x: Int) => x != 0)
+
+      assert(contains(filteredFrom3To6Except0, 3), "filter 6")
+      assert(contains(filteredFrom3To6Except0, 4), "filter 7")
+      assert(contains(filteredFrom3To6Except0, 5), "filter 8")
+      assert(contains(filteredFrom3To6Except0, 6), "filter 9")
+
+    }
+  }
+
+  test("forall test") {
+    new TestSets {
+      assert(!forall(from13to20, (x: Int) => x % 2 == 0), "forall 1")
+      assert(forall(from13to20, (x: Int) => x / 1 == x), "forall 2")
+      assert(!forall(allPositivePlusNegative5, (x: Int) => x > 1), "forall 3")
+      assert(forall(allPositivePlusNegative5, (x: Int) => x > 0 || x == -5), "forall 4")
+    }
+  }
+
+  test("exists test") {
+    new TestSets {
+      assert(!exists(from13to20, (x: Int) => x < 13), "exists 1")
+      assert(exists(from13to20, (x: Int) => x == 13), "exists 2")
+      assert(exists(allPositivePlusNegative5, (x: Int) => x == -5), "exists 3")
+      assert(exists(allPositivePlusNegative5, (x: Int) => x > 0), "exists 4")
+      assert(exists(allPositivePlusNegative5, (x: Int) => x < 5), "exists 5")
+    }
+  }
+
 }

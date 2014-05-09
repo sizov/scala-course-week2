@@ -28,6 +28,14 @@ object FunSets {
     (x: Int) => x >= from && x <= to
   }
 
+  def pairedSet(): Set = {
+    (x: Int) => x % 2 == 0
+  }
+
+  def allPositivePlusNegative5Set(): Set = {
+    (x: Int) => x > 0 || x == -5
+  }
+
   /**
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
@@ -55,7 +63,9 @@ object FunSets {
   /**
    * Returns the subset of `s` for which `p` holds.
    */
-  def filter(s: Set, p: Int => Boolean): Set = ???
+  def filter(s: Set, p: Int => Boolean): Set = {
+    (x: Int) => s(x) && p(x)
+  }
 
   /**
    * The bounds for `forall` and `exists` are +/- 1000.
@@ -65,13 +75,18 @@ object FunSets {
   /**
    * Returns whether all bounded integers within `s` satisfy `p`.
    */
-  def forall(s: Set, p: Int => Boolean): Boolean = {
+  def forall(set: Set, p: Int => Boolean): Boolean = {
+
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (a < -bound)
+        true
+      else if (contains(set, a))
+        p(a) && iter(a - 1)
+      else
+        iter(a - 1)
     }
-    iter(???)
+
+    iter(bound)
   }
 
   /**
