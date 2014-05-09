@@ -2,6 +2,7 @@ package funsets
 
 import common._
 
+
 /**
  * 2. Purely Functional Sets.
  */
