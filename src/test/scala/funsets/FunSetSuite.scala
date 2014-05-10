@@ -213,6 +213,28 @@ class FunSetSuite extends FunSuite {
       assert(exists(allPositivePlusNegative5, (x: Int) => x == -5), "exists 3")
       assert(exists(allPositivePlusNegative5, (x: Int) => x > 0), "exists 4")
       assert(exists(allPositivePlusNegative5, (x: Int) => x < 5), "exists 5")
+      assert(exists(allPositivePlusNegative5, (x: Int) => x < 0), "exists 6")
+      assert(!exists(allPositivePlusNegative5, (x: Int) => x > -5 && x < 0), "exists 7")
+    }
+  }
+
+  test("map test") {
+    new TestSets {
+      var from14To21 = map(from13to20, (x: Int) => x + 1)
+
+      assert(!exists(from14To21, (x: Int) => x < 13), "map 1")
+      assert(!exists(from14To21, (x: Int) => x < 14), "map 2")
+      assert(exists(from14To21, (x: Int) => x == 14), "map 3")
+      assert(forall(from14To21, (x: Int) => x >= 14 && x <= 21), "map 4")
+
+      var twiceFrom3To6 = map(from3to6, (x: Int) => x * 2)
+
+      assert(contains(twiceFrom3To6, 6), "map 5")
+      assert(!contains(twiceFrom3To6, 7), "map 9")
+      assert(exists(twiceFrom3To6, (x: Int) => x == 8), "map 6")
+      assert(exists(twiceFrom3To6, (x: Int) => x == 10), "map 7")
+      assert(exists(twiceFrom3To6, (x: Int) => x == 12), "map 8")
+      assert(!exists(twiceFrom3To6, (x: Int) => x == 9), "map 10")
     }
   }
 
