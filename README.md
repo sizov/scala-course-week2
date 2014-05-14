@@ -1,4 +1,4 @@
 scala-course-week2
 ==================
 
-Week1 for scala trainiing
+Week2 for scala trainiing
